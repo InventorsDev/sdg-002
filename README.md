@@ -1,1 +1,1 @@
-# sdg-002
+# SDG OO2 Project
