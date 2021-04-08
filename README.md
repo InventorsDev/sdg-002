@@ -1,4 +1,4 @@
-# SDG OO2 Project
+# MedTime ⏰
 
 A web/mobile app that:
 * Helps people set reminders to take their drugs
