@@ -11,7 +11,7 @@
         <b-nav-item to="/dashboard/notifications" class="px-3"
           ><IconsBell
         /></b-nav-item>
-        <b-nav-item to="/dashboard" class="px-3"><IconsPlus /></b-nav-item>
+        <b-nav-item class="px-3"><IconsPlus /></b-nav-item>
         <b-nav-item to="/dashboard/contacts" class="px-3"
           ><IconsPhone
         /></b-nav-item>
