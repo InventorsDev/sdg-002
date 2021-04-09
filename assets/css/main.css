@@ -30,6 +30,9 @@ div.bg-custom {
 
 /* Bg colors utility class here 🎨 */
 
+.bg-green-400 {
+  background-color: var(--green-400);
+}
 .bg-green-gradient {
   background: linear-gradient(
     180deg,
@@ -40,15 +43,30 @@ div.bg-custom {
 }
 
 /* Text colors utility class here 🎨 */
-
+.text-green-200 {
+  color: var(--green-200);
+}
+.text-green-400 {
+  color: var(--green-400);
+}
 .text-lemon-100 {
   color: var(--lemon-100);
 }
 
 /* Margin x Padding utility class here */
-
+.mt-10vh {
+  margin-top: 10vh;
+}
 .mt-20vh {
   margin-top: 20vh;
+}
+
+/* Font utility class */
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
 }
 
 /* Glassmorphism 🔍*/
@@ -84,4 +102,19 @@ div.bg-custom {
   color: #fff;
   font-size: 17px;
   text-transform: uppercase;
+}
+
+/* Bottom navbar */
+a.nuxt-link-exact-active > svg > path {
+  fill: #ffffff !important;
+  fill-opacity: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
