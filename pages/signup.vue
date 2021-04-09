@@ -27,7 +27,7 @@
           <div class="text-center mt-5 mb-5">
             <b-button
               size="lg"
-              class="bg-green-gradient text-white rounded-pill w-100"
+              class="bg-green-gradient border-0 text-white rounded-pill w-100"
             >
               SIGN UP
             </b-button>
