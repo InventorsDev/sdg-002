@@ -1,5 +1,5 @@
 <template>
-  <div class="alert-card border p-3 pl-4">
+  <div class="alert-card border p-3 pl-3">
     <radial-progress-bar
       :diameter="100"
       :completed-steps="progress"
@@ -15,9 +15,7 @@
     <div class="mt-3">
       <span class="d-block text-muted">{{ noOfTablet + ' Tablets' }}</span>
       <span class="d-block mt-1 fw-500 text-green-200">{{ drugName }}</span>
-      <small class="d-block text-muted">{{
-        'Next ' + nextReminder
-      }}</small>
+      <small class="d-block text-muted">{{ 'Next ' + nextReminder }}</small>
     </div>
   </div>
 </template>
@@ -50,7 +48,7 @@ export default {
 </script>
 <style scoped>
 .alert-card {
-  padding-right: 70px !important;
+  padding-right: 65px !important;
   background: linear-gradient(
     135deg,
     rgba(250, 250, 250, 0.8) 0%,
