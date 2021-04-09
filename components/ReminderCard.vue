@@ -1,7 +1,7 @@
 <template>
   <div class="alert-card border p-3 pl-3">
     <radial-progress-bar
-      :diameter="100"
+      :diameter="70"
       :completed-steps="progress"
       :total-steps="100"
       :strokeWidth="4"
@@ -48,7 +48,7 @@ export default {
 </script>
 <style scoped>
 .alert-card {
-  padding-right: 65px !important;
+  padding-right: 60px !important;
   background: linear-gradient(
     135deg,
     rgba(250, 250, 250, 0.8) 0%,
@@ -57,5 +57,11 @@ export default {
   mix-blend-mode: normal;
   box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.02);
   border-radius: 30px;
+}
+.radial-progress-inner > h5 {
+  font-size: 16px;
+}
+.alert-card span {
+  font-size: 12px;
 }
 </style>
