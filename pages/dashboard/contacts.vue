@@ -28,39 +28,43 @@
       <!-- ... -->
       <section class="mt-5 mb-5">
         <h4 class="text-green-400 d-inline-block fw-600">
-          Later <span class="h5"><BIconChevronRight /></span>
+          List <span class="h5"><BIconChevronRight /></span>
         </h4>
 
         <b-row class="mt-4 flex-nowrap overflow-auto">
           <b-col cols="auto">
             <b-avatar
               class="border-0"
-              variant="warning"
-              text="Ae"
-              size="6rem"
+              src="~/assets/images/person-1.png"
+              size="4em"
             ></b-avatar>
+          </b-col>
+          <b-col cols="auto">
+            <b-avatar class="border-0" variant="success" size="4em"></b-avatar>
           </b-col>
           <b-col cols="auto">
             <b-avatar
               class="border-0"
-              variant="success"
-              text="Ae"
-              size="6rem"
+              src="~/assets/images/person-2.png"
+              size="4em"
             ></b-avatar>
+          </b-col>
+          <b-col cols="auto">
+            <b-avatar class="border-0" text="Ae" size="4em"></b-avatar>
+          </b-col>
+          <b-col cols="auto">
+            <b-avatar class="border-0" variant="success" size="4em"></b-avatar>
           </b-col>
           <b-col cols="auto">
             <b-avatar
               class="border-0"
-              variant="info"
-              text="Ae"
-              size="6rem"
+              src="~/assets/images/person-2.png"
+              size="4em"
             ></b-avatar>
-          </b-col>
-          <b-col cols="auto">
-            <b-avatar class="border-0" text="Ae" size="6rem"></b-avatar>
           </b-col>
         </b-row>
       </section>
+      <div class="mt-20vh">&nbsp;</div>
     </div>
     <bottom-nav />
   </div>

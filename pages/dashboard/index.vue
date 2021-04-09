@@ -13,10 +13,10 @@
         >
       </div>
       <section class="--recent-reminders mt-10vh">
-        <h4 class="text-green-400 d-inline-block fw-600">
+        <h5 class="section-title text-green-400 d-inline-block fw-600">
           Upcoming <br />
           Medication <span class="h5"><BIconChevronRight /></span>
-        </h4>
+        </h5>
         <span class="d-inline-block float-right mt-3">
           <IconsGreenBell />
         </span>
@@ -48,9 +48,9 @@
         </b-row>
       </section>
       <section class="mt-5 mb-5">
-        <h4 class="text-green-400 d-inline-block fw-600">
+        <h6 class="section-title text-green-400 d-inline-block fw-600">
           Later <span class="h5"><BIconChevronRight /></span>
-        </h4>
+        </h6>
         <b-row class="mt-3 justify-content-center">
           <b-col>
             <div>
@@ -70,6 +70,7 @@
           </b-col>
         </b-row>
       </section>
+      <div class="mt-10vh">&nbsp;</div>
     </div>
     <bottom-nav />
   </div>
@@ -83,3 +84,8 @@ export default {
   transition: 'fade',
 }
 </script>
+<style scoped>
+.section-title {
+  font-size: 18px;
+}
+</style>
