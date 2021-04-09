@@ -15,7 +15,7 @@
     <div class="mt-3">
       <span class="d-block text-muted">{{ noOfTablet + ' Tablets' }}</span>
       <span class="d-block mt-1 fw-500 text-green-200">{{ drugName }}</span>
-      <small class="d-block mt-1 text-muted">{{
+      <small class="d-block text-muted">{{
         'Next ' + nextReminder
       }}</small>
     </div>
