@@ -28,6 +28,12 @@ div.bg-custom {
     center fixed;
 }
 
+.gray-bg-wrapper {
+  background: url('@/assets/images/gray.png');
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  background-position: right 0px top 0px;
+}
 /* Bg colors utility class here 🎨 */
 
 .bg-green-400 {
