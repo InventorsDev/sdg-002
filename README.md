@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # MedTime ⏰
 
 A web/mobile app that:
@@ -24,25 +23,3 @@ and if the user should not reply within a particular time-frame, all of their fa
 ### Tools
 - **Front-end** - HTML, CSS & Javascript
 - **Back-end** - Nodejs & Express
-=======
-# medtime
-
-## Build Setup
-
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
->>>>>>> 1eefedb1157b8750159f3da72f6bfdf7874f12dc
