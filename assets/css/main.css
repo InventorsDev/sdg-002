@@ -1,0 +1,126 @@
+:root {
+  /* Green */
+  --green-50: #32f8af;
+  --green-100: #04bf8a;
+  --green-200: #038c73;
+  --green-300: #0d8c5d;
+  --green-400: #0a5934;
+  /* Lemon */
+  --lemon-100: #acf832;
+  --lemon-200: #5ad92b;
+  --lemon-300: #3bf047;
+  --lemon-400: #2bd968;
+  --lemon-400: #2bd968;
+}
+
+body,
+input::placeholder {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* For auth pages 🔐 */
+div.bg-custom {
+  color: #fff;
+  height: 100vh;
+  overflow: scroll;
+  /* background-color: var(--green-300); */
+  background: url('@/assets/images/bg.png') var(--green-300) no-repeat center
+    center fixed;
+}
+
+.gray-bg-wrapper {
+  background: url('@/assets/images/gray.png');
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  background-position: right 0px top 0px;
+}
+/* Bg colors utility class here 🎨 */
+
+.bg-green-400 {
+  background-color: var(--green-400);
+}
+.bg-green-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(4, 191, 138, 0.8) 0%,
+    rgba(4, 191, 138, 0.2) 100%
+  );
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Text colors utility class here 🎨 */
+.text-green-200 {
+  color: var(--green-200);
+}
+.text-green-400 {
+  color: var(--green-400);
+}
+.text-lemon-100 {
+  color: var(--lemon-100);
+}
+
+/* Margin x Padding utility class here */
+.mt-10vh {
+  margin-top: 10vh;
+}
+.mt-20vh {
+  margin-top: 20vh;
+}
+
+/* Font utility class */
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+
+/* Glassmorphism 🔍*/
+
+.glass {
+  padding: 20px;
+  background: linear-gradient(
+    150.77deg,
+    rgba(4, 191, 138, 0.48) 0%,
+    rgba(4, 191, 138, 0.12) 100%
+  );
+  border: 1px solid rgb(235, 233, 233);
+  mix-blend-mode: normal;
+  backdrop-filter: blur(100px);
+  border-radius: 30px;
+}
+
+/* Auth pages custom input */
+
+.auth-input {
+  color: #fff;
+  border: 0;
+  background: 0;
+  font-size: 17px;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 0.85rem 0.5rem;
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+}
+.auth-input::placeholder {
+  color: #fff;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+
+/* Bottom navbar */
+a.nuxt-link-exact-active > svg > path {
+  fill: #ffffff !important;
+  fill-opacity: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
