@@ -74,21 +74,21 @@ export default {
     return {
       reminders: [
         {
-          noOfTablet: '2',
+          noOfTablet: 2,
           drugName: 'Paracetamol',
-          progress: '70',
+          progress: 70,
           nextReminder: '5min',
         },
         {
-          noOfTablet: '1',
+          noOfTablet: 1,
           drugName: 'Septrin',
-          progress: '45',
+          progress: 40,
           nextReminder: '2 hours',
         },
         {
-          noOfTablet: '3',
+          noOfTablet: 3,
           drugName: 'Combatrin',
-          progress: '90',
+          progress: 90,
           nextReminder: '1 day',
         },
       ],
