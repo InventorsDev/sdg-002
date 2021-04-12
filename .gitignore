@@ -1,23 +1,13 @@
-<<<<<<< HEAD
 # Logs
 logs
-=======
-# Created by .ignore support plugin (hsz.mobi)
-### Node template
-# Logs
-/logs
->>>>>>> 1eefedb1157b8750159f3da72f6bfdf7874f12dc
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-<<<<<<< HEAD
 lerna-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-=======
->>>>>>> 1eefedb1157b8750159f3da72f6bfdf7874f12dc
 
 # Runtime data
 pids
@@ -30,19 +20,12 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
-<<<<<<< HEAD
 *.lcov
-=======
->>>>>>> 1eefedb1157b8750159f3da72f6bfdf7874f12dc
 
 # nyc test coverage
 .nyc_output
 
-<<<<<<< HEAD
 # Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
-=======
-# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
->>>>>>> 1eefedb1157b8750159f3da72f6bfdf7874f12dc
 .grunt
 
 # Bower dependency directory (https://bower.io/)
@@ -61,27 +44,21 @@ jspm_packages/
 # TypeScript v1 declaration files
 typings/
 
-<<<<<<< HEAD
 # TypeScript cache
 *.tsbuildinfo
 
-=======
->>>>>>> 1eefedb1157b8750159f3da72f6bfdf7874f12dc
 # Optional npm cache directory
 .npm
 
 # Optional eslint cache
 .eslintcache
 
-<<<<<<< HEAD
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/
 .rts2_cache_es/
 .rts2_cache_umd/
 
-=======
->>>>>>> 1eefedb1157b8750159f3da72f6bfdf7874f12dc
 # Optional REPL history
 .node_repl_history
 
@@ -93,15 +70,11 @@ typings/
 
 # dotenv environment variables file
 .env
-<<<<<<< HEAD
 .env.test
-=======
->>>>>>> 1eefedb1157b8750159f3da72f6bfdf7874f12dc
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
-<<<<<<< HEAD
 # Next.js build output
 .next
 
@@ -114,22 +87,11 @@ dist
 # Comment in the public line in if your project uses Gatsby and *not* Next.js
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
-=======
-# next.js build output
-.next
-
-# nuxt.js build output
-.nuxt
-
-# Nuxt generate
-dist
->>>>>>> 1eefedb1157b8750159f3da72f6bfdf7874f12dc
 
 # vuepress build output
 .vuepress/dist
 
 # Serverless directories
-<<<<<<< HEAD
 .serverless/
 
 # FuseBox cache
@@ -140,18 +102,3 @@ dist
 
 # TernJS port file
 .tern-port
-=======
-.serverless
-
-# IDE / Editor
-.idea
-
-# Service worker
-sw.*
-
-# macOS
-.DS_Store
-
-# Vim swap files
-*.swp
->>>>>>> 1eefedb1157b8750159f3da72f6bfdf7874f12dc
