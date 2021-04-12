@@ -21,28 +21,16 @@
           <IconsGreenBell />
         </span>
         <b-row class="mt-4 flex-nowrap overflow-auto">
-          <b-col cols="auto">
+          <b-col
+            cols="auto px-2"
+            v-for="(reminder, index) in reminders"
+            :key="index"
+          >
             <reminder-card
-              :noOfTablet="2"
-              drugName="Paracetamol"
-              :progress="70"
-              nextReminder="5min"
-            />
-          </b-col>
-          <b-col cols="auto">
-            <reminder-card
-              :noOfTablet="2"
-              drugName="Paracetamol"
-              :progress="45"
-              nextReminder="5min"
-            />
-          </b-col>
-          <b-col cols="auto">
-            <reminder-card
-              :noOfTablet="2"
-              drugName="Paracetamol"
-              :progress="90"
-              nextReminder="5min"
+              :noOfTablet="reminder.noOfTablet"
+              :drugName="reminder.drugName"
+              :progress="reminder.progress"
+              :nextReminder="reminder.nextReminder"
             />
           </b-col>
         </b-row>
@@ -82,6 +70,30 @@ export default {
     BIconChevronRight,
   },
   transition: 'fade',
+  data() {
+    return {
+      reminders: [
+        {
+          noOfTablet: 2,
+          drugName: 'Paracetamol',
+          progress: 70,
+          nextReminder: '5min',
+        },
+        {
+          noOfTablet: 1,
+          drugName: 'Septrin',
+          progress: 40,
+          nextReminder: '2 hours',
+        },
+        {
+          noOfTablet: 3,
+          drugName: 'Combatrin',
+          progress: 90,
+          nextReminder: '1 day',
+        },
+      ],
+    }
+  },
 }
 </script>
 <style scoped>
