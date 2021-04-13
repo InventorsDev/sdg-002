@@ -43,11 +43,7 @@
             v-for="(contact, index) in contacts"
             :key="index"
           >
-            <b-avatar
-              class="border-0"
-              src="~/assets/images/person-1.png"
-              size="90px"
-            ></b-avatar>
+            <b-avatar class="border-0" size="90px"></b-avatar>
           </b-col>
         </b-row>
       </section>

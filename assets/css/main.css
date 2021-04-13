@@ -18,12 +18,11 @@ input::placeholder {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* For auth pages 🔐 */
+/* For pages with custom backgrounds 🔐 */
 div.bg-custom {
   color: #fff;
   height: 100vh;
   overflow: scroll;
-  /* background-color: var(--green-300); */
   background: url('@/assets/images/bg.png') var(--green-300) no-repeat center
     center fixed;
 }
@@ -31,8 +30,14 @@ div.bg-custom {
 .gray-bg-wrapper {
   background: url('@/assets/images/gray.png');
   background-repeat: no-repeat;
-  background-size: 200px 200px;
+  background-size: 180px 180px;
   background-position: right 0px top 0px;
+}
+.edit-bg-wrapper {
+  background: url('@/assets/images/edit-cover.png');
+  background-repeat: no-repeat;
+  background-size: auto auto;
+  background-position: center top -20px;
 }
 /* Bg colors utility class here 🎨 */
 
@@ -47,7 +52,13 @@ div.bg-custom {
   );
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
-
+.bg-green-custom {
+  background: linear-gradient(
+    180deg,
+    rgba(4, 191, 138, 0.8) 0%,
+    rgb(10 89 52) 100%
+  );
+}
 /* Text colors utility class here 🎨 */
 .text-green-200 {
   color: var(--green-200);
@@ -62,6 +73,9 @@ div.bg-custom {
 /* Margin x Padding utility class here */
 .mt-10vh {
   margin-top: 10vh;
+}
+.mt-11vh {
+  margin-top: 11.5vh;
 }
 .mt-20vh {
   margin-top: 20vh;
