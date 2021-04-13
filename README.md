@@ -20,6 +20,11 @@ ____
 And once the app detects a fall from the device, it will prompt the user asking if they are okay or not.
 and if the user should not reply within a particular time-frame, all of their favorite contacts will be alerted via **SMS** you along with the last ***recorded location*** of the user.
 
+### Authors
+
+[@Asaolu Elijah](https://github.com/asaoluelijah) | [@Sam-alade Joshua](https://github.com/slade-jay)
+
+
 ### Tools
 - **Front-end** - HTML, CSS & Javascript
 - **Back-end** - Nodejs & Express
