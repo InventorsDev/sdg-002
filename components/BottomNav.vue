@@ -12,7 +12,7 @@
           ><IconsBell
         /></b-nav-item>
         <b-nav-item class="px-3">
-          <add-new-overlay> <IconsPlus /> </add-new-overlay
+          <lazy-add-new-overlay> <IconsPlus /> </lazy-add-new-overlay
         ></b-nav-item>
         <b-nav-item to="/dashboard/contacts" class="px-3"
           ><IconsPhone

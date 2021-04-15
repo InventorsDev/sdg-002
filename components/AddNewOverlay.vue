@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- load navbars -->
-    <new-reminder-modal />
-    <new-contact-modal />
+    <lazy-new-reminder-modal />
+    <lazy-new-contact-modal />
     <!-- /... -->
     <div id="custom-overlay" class="overlay">
       <p class="mt-4 px-4 text-right" @click="closeNav()">
