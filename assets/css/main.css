@@ -144,6 +144,14 @@ a.nuxt-link-exact-active > svg > path {
   opacity: 0;
 }
 
+/* Custom checkbox */
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #0a5934;
+  border-color: #0a5934;
+  background-color: #0a5934;
+}
+
 /* Full screen modal */
 
 .modal.fade {
@@ -176,15 +184,18 @@ a.nuxt-link-exact-active > svg > path {
 .modal-content hr {
   border-color: #ccd3d01a;
 }
-.modal-content input {
+.modal-content input,
+.modal-content textarea {
   background: rgba(196, 196, 196, 0.1);
   mix-blend-mode: normal;
   backdrop-filter: blur(5px);
 }
-.modal-content input::placeholder {
+.modal-content input::placeholder,
+.modal-content textarea::placeholder {
   color: #fff;
 }
-.modal-content input:focus {
+.modal-content input:focus,
+.modal-content textarea:focus {
   color: #ffffff;
   background-color: #0a5934;
   outline: 0;
