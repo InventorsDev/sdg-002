@@ -57,6 +57,14 @@ export default {
     API_URL_BASE: process.env.API_URL_BASE,
   },
 
+  // Loading configuration
+  loading: {
+    continuous: true,
+    color: '#acf832',
+    failedColor: '#fecb00',
+    height: '5px',
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }
