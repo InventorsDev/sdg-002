@@ -252,7 +252,7 @@ export default {
 
 <style lang="scss">
 // Fonts:
-$font-size-base: 18px;
+$font-size-base: 16px;
 $font-size-small: 14px;
 $font-size-smallest: 12px;
 $font-weight-normal: normal;
