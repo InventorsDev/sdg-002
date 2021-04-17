@@ -10,7 +10,7 @@
         />
         <span class="h4 text-green-400 font-weight-bolder d-inline-block ml-3">
           Demi
-          <b-link to="/dashboard/profile/edit" class="d-inline-block ml-2"
+          <b-link to="/profile/edit" class="d-inline-block ml-2"
             ><IconsEdit
           /></b-link>
         </span>
