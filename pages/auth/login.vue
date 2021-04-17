@@ -11,14 +11,14 @@
         </h1>
         <b-form class="mt-5">
           <b-form-group>
-            <b-input type="text" class="auth-input" placeholder="Username" />
+            <material-input-1 type="text">
+              <span class="text-white text-uppercase">Username</span>
+            </material-input-1>
           </b-form-group>
           <b-form-group class="mt-5">
-            <b-input
-              type="password"
-              class="auth-input"
-              placeholder="Password"
-            />
+            <material-input-1 type="password">
+              <span class="text-white text-uppercase">Password</span>
+            </material-input-1>
           </b-form-group>
 
           <div class="text-right">
@@ -31,7 +31,7 @@
             >
               LOGIN
             </b-button>
-            <b-link to="/signup" class="mt-3 text-white mt-2 d-inline-block">
+            <b-link to="/auth/signup" class="mt-3 text-white mt-2 d-inline-block">
               SIGN UP
             </b-link>
           </div>

@@ -12,18 +12,23 @@
         <!-- .. -->
         <b-form class="mt-5">
           <b-form-group>
-            <b-input type="text" class="auth-input" placeholder="Full name" />
+            <material-input-1 type="text">
+              <span class="text-white text-uppercase">Full name</span>
+            </material-input-1>
           </b-form-group>
+          <!-- .. -->
           <b-form-group class="mt-4 py-2">
-            <b-input type="email" class="auth-input" placeholder="Email" />
+            <material-input-1 type="email">
+              <span class="text-white text-uppercase">Email</span>
+            </material-input-1>
           </b-form-group>
+          <!-- .. -->
           <b-form-group class="mt-4 py-2">
-            <b-input
-              type="password"
-              class="auth-input"
-              placeholder="Password"
-            />
+            <material-input-1 type="password">
+              <span class="text-white text-uppercase">Password</span>
+            </material-input-1>
           </b-form-group>
+          <!-- .. -->
           <div class="text-center mt-5 mb-5">
             <b-button
               size="lg"
@@ -31,7 +36,10 @@
             >
               SIGN UP
             </b-button>
-            <b-link to="/login" class="mt-3 text-white mt-2 d-inline-block">
+            <b-link
+              to="/auth/login"
+              class="mt-3 text-white mt-2 d-inline-block"
+            >
               LOGIN
             </b-link>
           </div>
