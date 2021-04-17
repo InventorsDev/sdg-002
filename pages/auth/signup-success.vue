@@ -24,3 +24,8 @@
     </b-container>
   </div>
 </template>
+<script>
+export default {
+  layout: 'no-auth',
+}
+</script>
