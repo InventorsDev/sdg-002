@@ -1,49 +1,103 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">medtime</h1>
-      <div class="links">
-        <b-link to="/login" class="button--green">Login</b-link>
-        <b-link to="/signup" class="button--grey">Signup</b-link>
+  <div>
+    <div class="container px-4">
+      <div class="mt-4">
+        <img
+          src="~/assets/images/avatar-sm.png"
+          class="img-auto"
+          alt="avatar"
+          width="45"
+        />
+        <span class="h4 text-green-400 font-weight-bolder d-inline-block ml-3"
+          >Hi, Demi</span
+        >
       </div>
+      <section class="--recent-reminders mt-10vh">
+        <h5 class="section-title text-green-400 d-inline-block fw-600">
+          Upcoming <br />
+          Medication <span class="h5"><BIconChevronRight /></span>
+        </h5>
+        <span class="d-inline-block float-right mt-3">
+          <IconsGreenBell />
+        </span>
+        <b-row class="mt-4 flex-nowrap overflow-auto">
+          <b-col
+            cols="auto px-2"
+            v-for="(reminder, index) in reminders"
+            :key="index"
+          >
+            <reminder-card
+              :noOfTablet="reminder.noOfTablet"
+              :drugName="reminder.drugName"
+              :progress="reminder.progress"
+              :nextReminder="reminder.nextReminder"
+            />
+          </b-col>
+        </b-row>
+      </section>
+      <section class="mt-5 mb-5">
+        <h6 class="section-title text-green-400 d-inline-block fw-600">
+          Later <span class="h5"><BIconChevronRight /></span>
+        </h6>
+        <b-row class="mt-3 justify-content-center">
+          <b-col>
+            <div>
+              <b-card
+                overlay
+                img-src="~/assets/images/capsule.png"
+                img-alt="Card Image"
+                text-variant="green-400"
+                class="border-0 p-0"
+              >
+                <b-card-title class="mt-3 font-weight-bold">
+                  Wound Dressing
+                </b-card-title>
+                <b-card-text> Next 2 hours</b-card-text>
+              </b-card>
+            </div>
+          </b-col>
+        </b-row>
+      </section>
+      <div class="mt-10vh">&nbsp;</div>
     </div>
+    <bottom-nav />
   </div>
 </template>
-
 <script>
-export default {}
+import { BIconChevronRight } from 'bootstrap-vue'
+export default {
+  components: {
+    BIconChevronRight,
+  },
+  transition: 'fade',
+  data() {
+    return {
+      reminders: [
+        {
+          noOfTablet: 2,
+          drugName: 'Paracetamol',
+          progress: 70,
+          nextReminder: '5min',
+        },
+        {
+          noOfTablet: 1,
+          drugName: 'Septrin',
+          progress: 40,
+          nextReminder: '2 hours',
+        },
+        {
+          noOfTablet: 3,
+          drugName: 'Combatrin',
+          progress: 90,
+          nextReminder: '1 day',
+        },
+      ],
+    }
+  },
+}
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+<style scoped>
+.section-title {
+  font-size: 18px;
 }
 </style>
