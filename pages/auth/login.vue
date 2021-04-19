@@ -62,7 +62,7 @@ export default {
         .$post('/auth/login', this.user)
         .then((res) => {
           this.$nuxt.$loading.finish()
-          console.log(res)
+          // console.log(res)
           if (res.token) {
             localStorage.user_token = res.token
             this.$router.push('/')
@@ -71,15 +71,25 @@ export default {
           }
         })
         .catch((err) => {
-          let errors = err.response.data.errors
-          let fError = errors[Object.keys(errors)[0]][0]
-          this.$bvToast.toast(fError, {
-            title: 'Registeration Error!',
-            toaster: 'b-toaster-bottom-center',
-            solid: true,
-            variant: 'danger',
-            appendToast: true,
-          })
+          if (err.response !== undefined && err.response.status === 422) {
+            let errors = err.response.data.errors
+            let fError = errors[Object.keys(errors)[0]][0]
+            this.$bvToast.toast(fError, {
+              title: 'Login Error!',
+              toaster: 'b-toaster-bottom-center',
+              solid: true,
+              variant: 'danger',
+              appendToast: true,
+            })
+          } else {
+            this.$bvToast.toast('Check internet connection', {
+              title: 'Login Error!',
+              toaster: 'b-toaster-bottom-center',
+              solid: true,
+              variant: 'danger',
+              appendToast: true,
+            })
+          }
         })
     },
   },

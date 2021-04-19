@@ -90,15 +90,25 @@ export default {
             }
           })
           .catch((err) => {
-            let errors = err.response.data.errors
-            let fError = errors[Object.keys(errors)[0]][0]
-            this.$bvToast.toast(fError, {
-              title: 'Registeration Error!',
-              toaster: 'b-toaster-bottom-center',
-              solid: true,
-              variant: 'danger',
-              appendToast: true,
-            })
+            if (err.response !== undefined && err.response.status === 422) {
+              let errors = err.response.data.errors
+              let fError = errors[Object.keys(errors)[0]][0]
+              this.$bvToast.toast(fError, {
+                title: 'Registration Error!',
+                toaster: 'b-toaster-bottom-center',
+                solid: true,
+                variant: 'danger',
+                appendToast: true,
+              })
+            } else {
+              this.$bvToast.toast('Check internet connection', {
+                title: 'Registration Error!',
+                toaster: 'b-toaster-bottom-center',
+                solid: true,
+                variant: 'danger',
+                appendToast: true,
+              })
+            }
           })
       }
     },
