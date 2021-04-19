@@ -49,7 +49,7 @@ export default {
   z-index: 1;
   top: 0;
   left: 0;
-  background: rgba(10, 89, 52, 0.1);
+  background: #0a59344d;
   mix-blend-mode: normal;
   box-shadow: 5px 7px 7px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(5px);
