@@ -10,7 +10,7 @@
           <span class="text-lemon-100">Sign Up</span>
         </h1>
         <!-- .. -->
-        <b-form class="mt-5" @submit.prevent="createAccount">
+        <b-form class="mt-5" @submit.prevent="submitForm">
           <b-form-group>
             <material-input-1 type="text" v-model="user.name">
               <span class="text-white text-uppercase">Full name</span>
@@ -50,8 +50,8 @@
   </div>
 </template>
 <script>
-import stringify from 'qs/lib/stringify'
-import { componentsPlugin } from 'bootstrap-vue'
+import { mapActions } from 'vuex';
+
 export default {
   layout: 'no-auth',
   data() {
@@ -61,12 +61,11 @@ export default {
         email: null,
         password: null,
       },
-    }
+    };
   },
   methods: {
-    async createAccount() {
-      const self = this
-      // ...
+    submitForm() {
+      const self = this;
       if (this.user.password.length < 7) {
         this.$bvToast.toast('Password must be greater than 6 characters', {
           title: 'Registeration Error!',
@@ -74,44 +73,39 @@ export default {
           solid: true,
           variant: 'danger',
           appendToast: true,
-        })
+        });
       } else {
-        // ...
-        this.$nuxt.$loading.start()
-        await this.$axios
-          .$post('/auth/register', this.user)
-          .then((res) => {
-            this.$nuxt.$loading.finish()
-            if (res.token) {
-              localStorage.user_token = res.token
-              this.$router.push('/')
-            } else {
-              // ...
-            }
+        this.signUp(self.user)
+          .then(() => {
+            this.$nuxt.$loading.finish();
+            this.$router.push('/');
           })
           .catch((err) => {
             if (err.response !== undefined && err.response.status === 422) {
-              let errors = err.response.data.errors
-              let fError = errors[Object.keys(errors)[0]][0]
+              let errors = err.response.data.errors;
+              let fError = errors[Object.keys(errors)[0]][0];
               this.$bvToast.toast(fError, {
                 title: 'Registration Error!',
                 toaster: 'b-toaster-bottom-center',
                 solid: true,
                 variant: 'danger',
                 appendToast: true,
-              })
+              });
             } else {
-              this.$bvToast.toast('Check internet connection', {
+              this.$bvToast.toast('Unable to login, try again', {
                 title: 'Registration Error!',
                 toaster: 'b-toaster-bottom-center',
                 solid: true,
                 variant: 'danger',
                 appendToast: true,
-              })
+              });
             }
-          })
+          });
       }
     },
+    ...mapActions({
+      signUp: 'user/signUp',
+    }),
   },
-}
+};
 </script>
