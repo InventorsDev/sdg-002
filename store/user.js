@@ -7,6 +7,7 @@ export const getters = {
   authenticated(state) {
     return state.token && state.userDetails;
   },
+
   userDetails(state) {
     return state.userDetails;
   },
@@ -16,12 +17,20 @@ export const mutations = {
   SET_TOKEN(state, token) {
     state.token = token;
   },
+
   SET_USER(state, data) {
     state.userDetails = data;
   },
 };
 
 export const actions = {
+  // ..
+
+  async signUp({ dispatch }, credentials) {
+    let response = await this.$axios.$post('/auth/register', credentials);
+    return dispatch('attempt', response.token);
+  },
+
   async signIn({ dispatch }, credentials) {
     let response = await this.$axios.$post('/auth/login', credentials);
     return dispatch('attempt', response.token);
@@ -52,11 +61,11 @@ export const actions = {
       commit('SET_USER', null);
     }
   },
+
   logOut: ({ commit }) => {
     return this.$axios.$post('/auth/logout').then(() => {
       commit('SET_TOKEN', null);
       commit('SET_USER', null);
     });
   },
-  //   signup: () => {},
 };
