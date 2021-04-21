@@ -8,9 +8,9 @@
           alt="avatar"
           width="45"
         />
-        <span class="h4 text-green-400 font-weight-bolder d-inline-block ml-3"
-          >Hi, Demi</span
-        >
+        <span class="h4 text-green-400 font-weight-bolder d-inline-block ml-3">
+          Hi, {{ userDetails.name.split(' ')[0] }}
+        </span>
       </div>
       <section class="--recent-reminders mt-10vh">
         <h5 class="section-title text-green-400 d-inline-block fw-600">
@@ -64,7 +64,8 @@
   </div>
 </template>
 <script>
-import { BIconChevronRight } from 'bootstrap-vue'
+import { mapGetters } from 'vuex';
+import { BIconChevronRight } from 'bootstrap-vue';
 export default {
   components: {
     BIconChevronRight,
@@ -92,9 +93,15 @@ export default {
           nextReminder: '1 day',
         },
       ],
-    }
+    };
   },
-}
+  computed: {
+    ...mapGetters({
+      authenticated: 'user/authenticated',
+      userDetails: 'user/userDetails',
+    }),
+  },
+};
 </script>
 <style scoped>
 .section-title {
