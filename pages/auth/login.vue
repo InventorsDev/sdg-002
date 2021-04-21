@@ -9,7 +9,7 @@
           <br />
           <span class="text-lemon-100">welcome</span>
         </h1>
-        <b-form class="mt-5" @submit.prevent="login">
+        <b-form class="mt-5" @submit.prevent="submitForm">
           <b-form-group>
             <material-input-1 type="email" v-model="user.email">
               <span class="text-white text-uppercase">Email Address</span>
@@ -45,6 +45,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
   layout: 'no-auth',
   data() {
@@ -53,45 +54,43 @@ export default {
         email: null,
         password: null,
       },
-    }
+    };
   },
   methods: {
-    async login() {
-      this.$nuxt.$loading.start()
-      await this.$axios
-        .$post('/auth/login', this.user)
-        .then((res) => {
-          this.$nuxt.$loading.finish()
-          // console.log(res)
-          if (res.token) {
-            localStorage.user_token = res.token
-            this.$router.push('/')
-          } else {
-            // ...
-          }
+    submitForm() {
+      this.$nuxt.$loading.start();
+
+      this.signIn(this.user)
+        .then(() => {
+          this.$nuxt.$loading.finish();
+          this.$router.push('/');
         })
         .catch((err) => {
+          this.$nuxt.$loading.finish();
           if (err.response !== undefined && err.response.status === 422) {
-            let errors = err.response.data.errors
-            let fError = errors[Object.keys(errors)[0]][0]
+            let errors = err.response.data.errors;
+            let fError = errors[Object.keys(errors)[0]][0];
             this.$bvToast.toast(fError, {
               title: 'Login Error!',
               toaster: 'b-toaster-bottom-center',
               solid: true,
               variant: 'danger',
               appendToast: true,
-            })
+            });
           } else {
-            this.$bvToast.toast('Check internet connection', {
+            this.$bvToast.toast('Unable to login, try again', {
               title: 'Login Error!',
               toaster: 'b-toaster-bottom-center',
               solid: true,
               variant: 'danger',
               appendToast: true,
-            })
+            });
           }
-        })
+        });
     },
+    ...mapActions({
+      signIn: 'user/signIn',
+    }),
   },
-}
+};
 </script>
