@@ -42,4 +42,14 @@ export default {
       commit('SET_USER', null);
     }
   },
+
+  async newContact(_, contactDetails) {
+    return await this.$axios.$post('/contacts', contactDetails);
+  },
+
+  async getContacts({ commit }) {
+    let response = await this.$axios.$get('/contacts');
+    commit('SET_CONTACTS', response);
+    return response;
+  },
 };
