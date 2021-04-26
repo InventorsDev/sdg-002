@@ -4,7 +4,7 @@
       <h2 class="d-inline-block mt-5 text-green-400 font-weight-bolder">
         Life <br />savers
       </h2>
-      <template v-if="favouriteContacts.length > 10">
+      <template v-if="favouriteContacts.length > 0">
         <section>
           <h5 class="mt-5 text-green-400 fw-600">Recent</h5>
           <div class="mt-4">
