@@ -89,6 +89,11 @@ button.no-style {
   margin-top: 20vh;
 }
 
+/* Opacity.. */
+.opacity-8 {
+  opacity: 0.8;
+}
+
 /* Font utility class */
 .fw-500 {
   font-weight: 500;

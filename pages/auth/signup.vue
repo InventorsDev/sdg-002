@@ -39,7 +39,7 @@
             </b-button>
             <b-link
               to="/auth/login"
-              class="mt-3 text-white mt-2 d-inline-block"
+              class="mt-3 text-white opacity-8 mt-2 d-inline-block"
             >
               LOGIN
             </b-link>
