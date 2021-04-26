@@ -25,7 +25,7 @@
                 {{ contact.name }}
               </h6>
               <p class="text-muted">
-                <small>{{ contact.created_at }}</small>
+                <small>{{ toRelativeTime(contact.created_at) }}</small>
               </p>
             </b-col>
           </b-row>
@@ -40,7 +40,7 @@
         <b-row class="mt-4 flex-nowrap overflow-auto">
           <b-col
             cols="auto px-2"
-            v-for="(contact, index) in contacts"
+            v-for="(contact, index) in favouriteContacts"
             :key="index"
           >
             <b-avatar class="border-0" size="90px"></b-avatar>
@@ -53,50 +53,38 @@
   </div>
 </template>
 <script>
-import { BIconChevronRight } from 'bootstrap-vue'
+import { BIconChevronRight } from 'bootstrap-vue';
+import { mapActions, mapGetters } from 'vuex';
+import RelativeTime from '@yaireo/relative-Time';
+
 export default {
   components: {
     BIconChevronRight,
   },
   transition: 'fade',
-  asyncData() {
-    return {
-      contacts: [
-        {
-          name: 'Asaolu Elijah',
-          email: 'asaolu@mail.com',
-          phone_number: '09023782',
-          relationship: 'Brother',
-          created_at: '2 Days ago',
-        },
-        {
-          name: 'Dev Joshua',
-          email: 'josh@mail.com',
-          phone_number: '08023782',
-          relationship: 'Father',
-          created_at: '2 Days ago',
-        },
-        {
-          name: 'Joshua Joshua',
-          email: 'josh2@mail.com',
-          phone_number: '07023782',
-          relationship: 'Uncle',
-          created_at: '2 Days ago',
-        },
-        {
-          name: 'Marvel Jay',
-          email: 'marv@mail.com',
-          phone_number: '07023782',
-          relationship: 'Uncle',
-          created_at: '2 Days ago',
-        },
-      ],
-    }
+  asyncData({ store }) {
+    return store
+      .dispatch('user/getContacts')
+      .then((_) => {
+        return { fetchError: false };
+      })
+      .catch((_) => {
+        return { fetchError: true };
+      });
   },
   computed: {
+    ...mapGetters({
+      favouriteContacts: 'user/favouriteContacts',
+    }),
     recentContacts() {
-      return this.contacts.slice(0, 2)
+      return this.favouriteContacts.slice(0, 2);
     },
   },
-}
+  methods: {
+    toRelativeTime(timestamp) {
+      const relativeTime = new RelativeTime();
+      return relativeTime.from(new Date(timestamp));
+    },
+  },
+};
 </script>
