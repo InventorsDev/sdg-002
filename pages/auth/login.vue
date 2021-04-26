@@ -3,7 +3,7 @@
     &nbsp;
     <b-container>
       <!-- Glassmorphism -->
-      <div class="glass mt-20vh mb-5">
+      <div class="glass mt-15vh mb-5">
         <h1 class="font-weight-bold">
           Hi,
           <br />
