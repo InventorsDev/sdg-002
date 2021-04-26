@@ -6,4 +6,12 @@ export default {
   userDetails(state) {
     return state.userDetails;
   },
+
+  favouriteContacts(state) {
+    return state.favouriteContacts;
+  },
+
+  reminders(state) {
+    return state.reminders;
+  },
 };
