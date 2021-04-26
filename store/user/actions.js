@@ -52,4 +52,14 @@ export default {
     commit('SET_CONTACTS', response);
     return response;
   },
+
+  async newReminder(_, reminderDetails) {
+    return await this.$axios.$post('/medications', reminderDetails);
+  },
+
+  async getReminders({ commit }) {
+    let response = await this.$axios.$get('/reminders');
+    commit('SET_REMINDERS', response);
+    return response;
+  },
 };
