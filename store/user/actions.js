@@ -49,7 +49,7 @@ export default {
 
   async getContacts({ commit }) {
     let response = await this.$axios.$get('/contacts');
-    commit('SET_CONTACTS', response);
+    commit('SET_CONTACTS', response.data);
     return response;
   },
 
