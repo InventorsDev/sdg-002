@@ -17,6 +17,7 @@
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.9.1",
+    "gravatar": "^1.8.1",
     "nuxt": "^2.15.3",
     "vue-radial-progress": "^0.3.2"
   },
