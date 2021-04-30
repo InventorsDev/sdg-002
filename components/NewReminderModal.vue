@@ -11,73 +11,82 @@
       </p>
       <h5 class="mt-4">Select Category</h5>
       <!-- ... -->
-      <b-form class="mt-3">
+      <b-form class="mt-3" @submit.prevent="createReminder">
         <!-- ... -->
         <!-- select category -->
-        <div class="text-center">
-          <b-img-lazy
-            v-bind="mainProps"
-            @click="selectedImage = 'bandage'"
-            src="~/assets/images/bandage.png"
-            alt="Image 1"
-          ></b-img-lazy>
-          <!-- .. -->
-          <b-img-lazy
-            v-bind="mainProps"
-            @click="selectedImage = 'tablet'"
-            src="~/assets/images/tablet.png"
-            alt="Image 2"
-          ></b-img-lazy>
-        </div>
+        <!-- <b-row>
+          <b-col cols="md-6 w-50">
+            <b-img-lazy
+              v-bind="mainProps"
+              @click="selectedImage = 'bandage'"
+              src="~/assets/images/bandage.png"
+              class="img-fluid"
+              alt="Image 1"
+            ></b-img-lazy>
+          </b-col>
+          <b-col cols="md-6 w-50">
+            <b-img-lazy
+              v-bind="mainProps"
+              @click="selectedImage = 'bandage'"
+              src="~/assets/images/tablet.png"
+              class="img-fluid"
+              alt="Image 1"
+            ></b-img-lazy>
+          </b-col>
+        </b-row> -->
         <hr />
         <!-- .. -->
         <b-form-group class="mt-4">
-          <b-textarea
-            rows="3"
-            class="px-4 py-5"
-            placeholder="Memo"
+          <b-input
+            placeholder="Drug Name"
+            class="px-4 py-4"
             style="border-radius: 30px"
-          >
-          </b-textarea>
+            required
+            v-model="reminderDetails.drug_name"
+          ></b-input>
         </b-form-group>
         <!-- ... -->
-        <hr class="mt-4" />
-        <!-- ... -->
-        <div class="glass-mini p-4">
+        <div class="mt-5 glass-mini p-4">
           <span>Prescription</span>
           <div class="--wrapper mt-4">
-            <div class="bg-green-400 p-3 rounded">
-              <label for="sb-inline">No of hours</label>
-              <b-form-spinbutton
-                class="ml-4"
-                id="sb-inline"
-                v-model="value"
-                inline
-              ></b-form-spinbutton>
+            <div class="overflow-auto bg-green-400 p-3 rounded">
+              <label for="sb-inline" class="w-50 mt-2">No of Hours</label>
+              <div class="w-50 d-inline-block float-right">
+                <b-form-spinbutton
+                  class="ml-4"
+                  id="sb-inline"
+                  v-model="reminderDetails.hours_per_dosage"
+                  inline
+                ></b-form-spinbutton>
+              </div>
             </div>
             <!-- ... -->
-            <div class="mt-3 bg-green-400 p-3 rounded">
-              <label for="sb-inline">No of days</label>
-              <b-form-spinbutton
-                class="ml-4"
-                id="sb-inline"
-                v-model="value"
-                inline
-              ></b-form-spinbutton>
+            <div class="overflow-auto mt-3 bg-green-400 p-3 rounded">
+              <label for="sb-inline" class="w-50 mt-2">No of days</label>
+              <div class="w-50 d-inline-block float-right">
+                <b-form-spinbutton
+                  class="ml-4"
+                  id="sb-inline"
+                  v-model="reminderDetails.no_of_days"
+                  inline
+                ></b-form-spinbutton>
+              </div>
             </div>
             <!-- ... -->
-            <div class="mt-3 bg-green-400 p-3 rounded">
-              <label for="sb-inline">No of pills</label>
-              <b-form-spinbutton
-                class="ml-4"
-                id="sb-inline"
-                v-model="value"
-                inline
-              ></b-form-spinbutton>
+            <div class="overflow-auto mt-3 bg-green-400 p-3 rounded">
+              <label for="sb-inline" class="w-50 mt-2">No of pills</label>
+              <div class="w-50 d-inline-block float-right">
+                <b-form-spinbutton
+                  class="ml-4"
+                  id="sb-inline"
+                  v-model="reminderDetails.dosage_no"
+                  inline
+                ></b-form-spinbutton>
+              </div>
             </div>
           </div>
         </div>
-        <div class="mt-10vh px-5">
+        <div class="mt-5 px-5">
           <div class="d-inline-block">
             <button
               type="button"
@@ -96,6 +105,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
   data() {
     return {
@@ -108,9 +118,46 @@ export default {
         class: 'mx-2',
       },
       value: 50,
-    }
+      reminderDetails: {
+        drug_name: null,
+        hours_per_dosage: 6,
+        no_of_days: 3,
+        dosage_no: 2,
+        dosage_started_at: new Date().toISOString(),
+      },
+    };
   },
-}
+  methods: {
+    ...mapActions({
+      newReminderAction: 'user/newReminder',
+    }),
+    async createReminder() {
+      this.reminderDetails.dosage = this.reminderDetails.dosage_no + ' pills';
+      this.$nuxt.$loading.start();
+      await this.newReminderAction(this.reminderDetails)
+        .then((res) => {
+          this.$nuxt.$loading.finish();
+          this.$bvToast.toast('New reminder created successfully', {
+            title: 'Operation Successful',
+            toaster: 'b-toaster-bottom-center',
+            solid: true,
+            variant: 'success',
+            appendToast: true,
+          });
+        })
+        .catch((err) => {
+          this.$nuxt.$loading.finish();
+          this.$bvToast.toast('Unable to create new reminder, try again', {
+            title: 'Operation Failed',
+            toaster: 'b-toaster-bottom-center',
+            solid: true,
+            variant: 'danger',
+            appendToast: true,
+          });
+        });
+    },
+  },
+};
 </script>
 <style scoped>
 .glass-mini {
