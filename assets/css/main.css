@@ -210,3 +210,19 @@ a.nuxt-link-exact-active > svg > path {
   outline: 0;
   box-shadow: none;
 }
+
+/* Spin buttons */
+.b-form-spinbutton {
+  background: transparent;
+}
+.b-form-spinbutton:focus {
+  background: transparent;
+}
+.b-form-spinbutton button,
+output {
+  background: transparent;
+  color: #fff;
+}
+.b-form-spinbutton.form-control.focus {
+  background: transparent;
+}
