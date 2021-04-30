@@ -6,28 +6,7 @@
         Notifications
       </h2>
       <p class="text-muted fw-500">2 overdue notifications</p>
-      <section>
-        <h5 class="mt-5 text-green-400 fw-600">Past</h5>
-        <div class="mt-4 px-3">
-          <!-- .. -->
-          <b-row
-            class="mt-4"
-            v-for="(reminder, index) in reminders"
-            :key="index"
-          >
-            <b-col cols="auto pr-0">
-              <b-form-checkbox size="lg"></b-form-checkbox>
-            </b-col>
-            <b-col cols="auto">
-              <h6 class="text-green-400 mb-0">
-                {{ reminder.noOfTablet + ' tablets' }} of
-                {{ reminder.drugName }}
-              </h6>
-              <small class="text-muted">{{ reminder.endDate + ' ago' }}</small>
-            </b-col>
-          </b-row>
-        </div>
-      </section>
+
       <!-- ... -->
       <section class="mt-5 mb-5">
         <h5 class="text-green-400 d-inline-block fw-600">Upcoming</h5>
@@ -35,21 +14,53 @@
         <div class="px-3">
           <b-row
             class="mt-4 p-3 bg-light rounded"
-            v-for="(reminder, index) in reminders"
+            v-for="(reminder, index) in reminders.upcoming"
             :key="index"
           >
             <b-col cols="auto pr-0">
-              <b-form-checkbox size="lg"></b-form-checkbox>
+              <b-form-checkbox
+                size="lg"
+                :checked="reminder.data.completed"
+                @change="markAsComplete(reminder.id)"
+              ></b-form-checkbox>
             </b-col>
             <b-col cols="auto">
               <h6 class="text-green-400 mb-0">
-                {{ reminder.drugName }} - {{ reminder.noOfTablet + ' tablets' }}
+                {{ reminder.data.drug_name }} -
+                {{ reminder.data.medication_id + ' Tablets' }}
               </h6>
-              <small class="text-muted">{{ reminder.endDate + ' ago' }}</small>
+              <small class="d-inline-block mt-2 text-muted">
+                To be taken {{ toRelativeTime(reminder.data.to_be_taken_at) }}
+              </small>
             </b-col>
           </b-row>
         </div>
         <!-- .. -->
+      </section>
+
+      <section>
+        <h5 class="mt-5 text-green-400 fw-600">Past</h5>
+        <div class="mt-4 px-3">
+          <!-- .. -->
+          <b-row
+            class="mt-4"
+            v-for="(reminder, index) in reminders.past"
+            :key="index"
+          >
+            <b-col cols="auto pr-0">
+              <b-form-checkbox size="lg" :checked="true"></b-form-checkbox>
+            </b-col>
+            <b-col cols="auto">
+              <h6 class="text-green-400 mb-0">
+                {{ reminder.data.medication_id + ' Tablets' }} of
+                {{ reminder.data.drug_name }}
+              </h6>
+              <small class="text-muted">
+                Completed {{ toRelativeTime(reminder.updated_at) }}
+              </small>
+            </b-col>
+          </b-row>
+        </div>
       </section>
       <!-- ... -->
       <section class="mt-5 mb-5">
@@ -78,23 +89,55 @@
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex';
+import RelativeTime from '@yaireo/relative-Time';
 export default {
   transition: 'fade',
-  asyncData() {
-    return {
-      reminders: [
-        {
-          noOfTablet: 2,
-          drugName: 'Panadol',
-          endDate: '2 days',
-        },
-        {
-          noOfTablet: 5,
-          drugName: 'Codeine',
-          endDate: '1 days',
-        },
-      ],
-    }
+  asyncData({ store }) {
+    return store
+      .dispatch('user/getReminders')
+      .then((_) => {
+        return { fetchError: false };
+      })
+      .catch((_) => {
+        return { fetchError: true };
+      });
   },
-}
+  computed: {
+    ...mapGetters({
+      reminders: 'user/reminders',
+    }),
+  },
+  methods: {
+    toRelativeTime(timestamp) {
+      const relativeTime = new RelativeTime();
+      return relativeTime.from(new Date(timestamp));
+    },
+    async markAsComplete(reminderId) {
+      this.$nuxt.$loading.start();
+      await this.$axios
+        .$post(`/reminders/${reminderId}/mark-as-read`)
+        .then((res) => {
+          this.$nuxt.$loading.finish();
+          this.$bvToast.toast('Reminder marked as complete successfully 🎉', {
+            title: 'Operation Successfull',
+            toaster: 'b-toaster-bottom-center',
+            solid: true,
+            variant: 'success',
+            appendToast: true,
+          });
+        })
+        .catch((err) => {
+          this.$nuxt.$loading.finish();
+          this.$bvToast.toast('Unable to mark reminder as complete', {
+            title: 'Operation Failed',
+            toaster: 'b-toaster-bottom-center',
+            solid: true,
+            variant: 'danger',
+            appendToast: true,
+          });
+        });
+    },
+  },
+};
 </script>
