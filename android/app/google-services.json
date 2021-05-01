@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "489837402129",
+    "project_id": "medtime-62294",
+    "storage_bucket": "medtime-62294.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489837402129:android:fe4ef4a509679a9b3979b0",
+        "android_client_info": {
+          "package_name": "com.medtime.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489837402129-bf71a1dgb7t76pe05ipl7vjaok1egrp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcTU4Jxbd2TnUaenXWQyiH0y_U6E6sxzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489837402129-bf71a1dgb7t76pe05ipl7vjaok1egrp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
