@@ -3,7 +3,7 @@
     &nbsp;
     <b-container>
       <!-- Glassmorphism -->
-      <div class="glass mt-20vh mb-5">
+      <div class="glass mt-15vh mb-5">
         <h1 class="font-weight-bold">
           Hi,
           <br />
@@ -22,7 +22,7 @@
           </b-form-group>
 
           <div class="text-right">
-            <a class="text-light"><small>FORGOT PASSWORD?</small></a>
+            <a class="text-white opacity-8"><small>FORGOT PASSWORD?</small></a>
           </div>
           <div class="text-center mt-5 mb-5">
             <b-button
@@ -34,7 +34,7 @@
             </b-button>
             <b-link
               to="/auth/signup"
-              class="mt-3 text-white mt-2 d-inline-block"
+              class="mt-3 text-white opacity-8 mt-2 d-inline-block"
             >
               SIGN UP
             </b-link>

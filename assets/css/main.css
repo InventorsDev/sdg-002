@@ -82,8 +82,16 @@ button.no-style {
 .mt-11vh {
   margin-top: 11.5vh;
 }
+.mt-15vh {
+  margin-top: 15vh;
+}
 .mt-20vh {
   margin-top: 20vh;
+}
+
+/* Opacity.. */
+.opacity-8 {
+  opacity: 0.8;
 }
 
 /* Font utility class */
@@ -201,4 +209,20 @@ a.nuxt-link-exact-active > svg > path {
   background-color: #0a5934;
   outline: 0;
   box-shadow: none;
+}
+
+/* Spin buttons */
+.b-form-spinbutton {
+  background: transparent;
+}
+.b-form-spinbutton:focus {
+  background: transparent;
+}
+.b-form-spinbutton button,
+output {
+  background: transparent;
+  color: #fff;
+}
+.b-form-spinbutton.form-control.focus {
+  background: transparent;
 }

@@ -3,7 +3,7 @@
     &nbsp;
     <b-container>
       <!-- Glassmorphism -->
-      <div class="glass mt-20vh mb-5">
+      <div class="glass mt-15vh mb-5">
         <h1 class="font-weight-bold">
           Please
           <br />
@@ -39,7 +39,7 @@
             </b-button>
             <b-link
               to="/auth/login"
-              class="mt-3 text-white mt-2 d-inline-block"
+              class="mt-3 text-white opacity-8 mt-2 d-inline-block"
             >
               LOGIN
             </b-link>

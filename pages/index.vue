@@ -3,8 +3,9 @@
     <div class="container px-4">
       <div class="mt-4">
         <img
-          src="~/assets/images/avatar-sm.png"
-          class="img-auto"
+          srcc="~/assets/images/avatar-sm.png"
+          :src="userDPUrl"
+          class="border rounded-circle"
           alt="avatar"
           width="45"
         />
@@ -15,48 +16,137 @@
       <section class="--recent-reminders mt-10vh">
         <h5 class="section-title text-green-400 d-inline-block fw-600">
           Upcoming <br />
-          Medication <span class="h5"><BIconChevronRight /></span>
+          Medication
+          <span class="h5">
+            <BIconChevronRight
+              @click="scrollTo('right', '.reminders-wrapper', 100)"
+            />
+          </span>
         </h5>
-        <span class="d-inline-block float-right mt-3">
+        <span
+          class="d-inline-block float-right mt-3"
+          @click="$bvModal.show('reminder-modal')"
+        >
           <IconsGreenBell />
         </span>
-        <b-row class="mt-4 flex-nowrap overflow-auto">
-          <b-col
-            cols="auto px-2"
-            v-for="(reminder, index) in reminders"
-            :key="index"
+        <template v-if="remindersLoaded && reminders.upcoming.length > 0">
+          <div class="reminders-wrapper">
+            <b-row class="mt-4 flex-nowrap overflow-auto">
+              <b-col
+                cols="auto px-2"
+                v-for="(reminder, index) in reminders.upcoming"
+                :key="index"
+              >
+                <reminder-card
+                  :noOfTablet="reminder.data.medication_id"
+                  :drugName="reminder.data.drug_name"
+                  :progress="reminder.progress"
+                  :nextReminder="toRelativeTime(reminder.data.to_be_taken_at)"
+                />
+              </b-col>
+            </b-row>
+          </div>
+        </template>
+        <template v-else-if="remindersLoaded && reminders.upcoming.length < 1">
+          <div
+            class="text-white shadow bg-lemon-400 bg-green-custom mt-3"
+            style="padding: 30px 20px; border-radius: 10px"
           >
-            <reminder-card
-              :noOfTablet="reminder.noOfTablet"
-              :drugName="reminder.drugName"
-              :progress="reminder.progress"
-              :nextReminder="reminder.nextReminder"
-            />
-          </b-col>
-        </b-row>
+            <p class="h6">Noting here yet 🧐</p>
+          </div>
+        </template>
+        <template v-else>
+          <div>
+            <b-card class="mt-3">
+              <b-skeleton animation="wave" width="85%"></b-skeleton>
+              <b-skeleton animation="wave" width="55%"></b-skeleton>
+              <b-skeleton animation="wave" width="70%"></b-skeleton>
+            </b-card>
+          </div>
+        </template>
       </section>
+      <!-- ... -->
       <section class="mt-5 mb-5">
         <h6 class="section-title text-green-400 d-inline-block fw-600">
           Later <span class="h5"><BIconChevronRight /></span>
         </h6>
-        <b-row class="mt-3 justify-content-center">
-          <b-col>
-            <div>
-              <b-card
-                overlay
-                img-src="~/assets/images/capsule.png"
-                img-alt="Card Image"
-                text-variant="green-400"
-                class="border-0 p-0"
-              >
-                <b-card-title class="mt-3 font-weight-bold">
-                  Wound Dressing
-                </b-card-title>
-                <b-card-text> Next 2 hours</b-card-text>
-              </b-card>
-            </div>
-          </b-col>
-        </b-row>
+        <template v-if="remindersLoaded">
+          <b-row no-gutters class="mt-3 flex-nowrap overflow-auto">
+            <b-col cols="auto">
+              <div>
+                <b-card
+                  overlay
+                  img-src="~/assets/images/capsule.png"
+                  img-alt="Card Image"
+                  text-variant="green-400"
+                  class="border-0 p-0"
+                >
+                  <b-card-title class="mt-3 font-weight-bold">
+                    Wound Dressing
+                  </b-card-title>
+                  <b-card-text> Next 2 hours</b-card-text>
+                </b-card>
+              </div>
+            </b-col>
+            <!-- ... -->
+            <b-col cols="auto">
+              <div>
+                <b-card
+                  overlay
+                  img-src="~/assets/images/green-bg.png"
+                  img-alt="Card Image"
+                  text-variant="white -400"
+                  class="border-0 p-0"
+                  style="height: 150px"
+                >
+                  <b-card-title class="mt-3 font-weight-bold">
+                    Apply Lotion
+                  </b-card-title>
+                  <b-card-text> Next 1 hours</b-card-text>
+                </b-card>
+              </div>
+            </b-col>
+          </b-row>
+        </template>
+        <template v-else>
+          <b-card class="mt-3">
+            <b-skeleton animation="wave" width="85%"></b-skeleton>
+            <b-skeleton animation="wave" width="55%"></b-skeleton>
+            <b-skeleton animation="wave" width="70%"></b-skeleton>
+          </b-card>
+        </template>
+      </section>
+      <!-- ... -->
+
+      <section class="mt-5 mb-5">
+        <h6 class="section-title text-green-400 d-inline-block fw-600">
+          Categories
+        </h6>
+        <template v-if="isMounted">
+          <b-row class="mt-3 justify-content-center">
+            <b-col cols="auto w-50">
+              <img src="~/assets/images/cat-tablet.png" class="img-fluid" />
+            </b-col>
+            <b-col cols="auto w-50">
+              <img src="~/assets/images/cat-bandage.png" class="img-fluid" />
+            </b-col>
+          </b-row>
+          <b-row class="d-none mt-2 justify-content-center">
+            <b-col cols="auto w-50">
+              <img src="~/assets/images/cat-injection.png" class="img-fluid" />
+            </b-col>
+            <b-col cols="auto w-50" style="margin-top: -8vh">
+              <img src="~/assets/images/cat-syrup.png" class="img-fluid" />
+            </b-col>
+          </b-row>
+        </template>
+        <template v-else>
+          <b-card class="mt-3">
+            <b-skeleton animation="wave" width="85%"></b-skeleton>
+            <b-skeleton animation="wave" width="55%"></b-skeleton>
+            <b-skeleton animation="wave" width="70%"></b-skeleton>
+          </b-card>
+        </template>
       </section>
       <div class="mt-10vh">&nbsp;</div>
     </div>
@@ -64,8 +154,9 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { BIconChevronRight } from 'bootstrap-vue';
+import RelativeTime from '@yaireo/relative-time';
 export default {
   components: {
     BIconChevronRight,
@@ -73,38 +164,65 @@ export default {
   transition: 'fade',
   data() {
     return {
-      reminders: [
-        {
-          noOfTablet: 2,
-          drugName: 'Paracetamol',
-          progress: 70,
-          nextReminder: '5min',
-        },
-        {
-          noOfTablet: 1,
-          drugName: 'Septrin',
-          progress: 40,
-          nextReminder: '2 hours',
-        },
-        {
-          noOfTablet: 3,
-          drugName: 'Combatrin',
-          progress: 90,
-          nextReminder: '1 day',
-        },
-      ],
+      remindersLoaded: false,
+      isMounted: false,
     };
   },
   computed: {
     ...mapGetters({
       authenticated: 'user/authenticated',
       userDetails: 'user/userDetails',
+      reminders: 'user/reminders',
     }),
+    userDPUrl() {
+      var gravatar = require('gravatar');
+
+      var secureUrl = gravatar.url(
+        this.userDetails.email,
+        { s: '45', d: 'robohash' },
+        true
+      );
+      return secureUrl;
+    },
+  },
+  methods: {
+    ...mapActions({
+      scrollToAction: 'app/scrollTo',
+      getReminders: 'user/getReminders',
+    }),
+    scrollTo(position, wrapper, noOfPixel) {
+      let options = { position, wrapper, noOfPixel };
+      this.scrollToAction(options);
+    },
+    toRelativeTime(timestamp) {
+      const relativeTime = new RelativeTime();
+      return relativeTime.from(new Date(timestamp));
+    },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isMounted = true;
+      this.getReminders()
+        .then((res) => {
+          this.$store.commit('user/UPDATE_PROGRESS');
+          this.remindersLoaded = true;
+          // after reminders is loaded, send FCM token to BE
+          setTimeout(() => {
+            this.$store.dispatch('app/sendToken');
+          }, 1000);
+        })
+        .catch((err) => {
+          this.remindersLoadedErr = false;
+        });
+    }, 1000);
   },
 };
 </script>
 <style scoped>
 .section-title {
   font-size: 18px;
+}
+.card-img {
+  height: 150px;
 }
 </style>

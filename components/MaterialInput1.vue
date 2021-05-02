@@ -280,6 +280,7 @@ $transition: 0.2s ease all;
 // Component:
 
 .material-input__component {
+  opacity: 0.8;
   position: relative;
 
   * {

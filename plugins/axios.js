@@ -8,8 +8,8 @@ export default function ({ $axios, store, redirect }) {
   $axios.onError((error) => {
     if (
       error.response.status === 401 &&
-      (error.request.responseURL.includes('login') ||
-        error.request.responseURL.includes('register'))
+      (!error.request.responseURL.includes('login') ||
+        !error.request.responseURL.includes('register'))
     ) {
       $axios
         .post('/auth/refresh')

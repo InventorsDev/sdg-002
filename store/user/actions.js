@@ -1,31 +1,5 @@
-export const state = () => ({
-  token: null,
-  userDetails: null,
-});
-
-export const getters = {
-  authenticated(state) {
-    return state.token && state.userDetails;
-  },
-
-  userDetails(state) {
-    return state.userDetails;
-  },
-};
-
-export const mutations = {
-  SET_TOKEN(state, token) {
-    state.token = token;
-  },
-
-  SET_USER(state, data) {
-    state.userDetails = data;
-  },
-};
-
-export const actions = {
-  // ..
-
+export default {
+  /* .... */
   async signUp({ dispatch }, credentials) {
     let response = await this.$axios.$post('/auth/register', credentials);
     return dispatch('attempt', response.token);
@@ -34,6 +8,13 @@ export const actions = {
   async signIn({ dispatch }, credentials) {
     let response = await this.$axios.$post('/auth/login', credentials);
     return dispatch('attempt', response.token);
+  },
+
+  logOut: ({ commit }) => {
+    return this.$axios.$post('/auth/logout').then(() => {
+      commit('SET_TOKEN', null);
+      commit('SET_USER', null);
+    });
   },
 
   async attempt({ commit, state }, token) {
@@ -62,10 +43,23 @@ export const actions = {
     }
   },
 
-  logOut: ({ commit }) => {
-    return this.$axios.$post('/auth/logout').then(() => {
-      commit('SET_TOKEN', null);
-      commit('SET_USER', null);
-    });
+  async newContact(_, contactDetails) {
+    return await this.$axios.$post('/contacts', contactDetails);
+  },
+
+  async getContacts({ commit }) {
+    let response = await this.$axios.$get('/contacts');
+    commit('SET_CONTACTS', response.data);
+    return response;
+  },
+
+  async newReminder(_, reminderDetails) {
+    return await this.$axios.$post('/medications', reminderDetails);
+  },
+
+  async getReminders({ commit }) {
+    let response = await this.$axios.$get('/reminders');
+    commit('SET_REMINDERS', response.data);
+    return response;
   },
 };
