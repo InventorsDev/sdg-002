@@ -3,8 +3,8 @@
     <div class="gray-bg-wrapper container">
       <div class="d-inline-block mt-5">
         <img
-          src="~/assets/images/avatar-sm.png"
-          class="img-auto"
+          :src="userDPUrl"
+          class="border rounded-circle img-auto"
           alt="avatar"
           width="45"
         />
@@ -91,6 +91,16 @@ export default {
     ...mapGetters({
       userDetails: 'user/userDetails',
     }),
+    userDPUrl() {
+      var gravatar = require('gravatar');
+
+      var secureUrl = gravatar.url(
+        this.userDetails.email,
+        { s: '45', d: 'robohash' },
+        true
+      );
+      return secureUrl;
+    },
   },
 };
 </script>
