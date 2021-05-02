@@ -70,7 +70,7 @@
 <script>
 import { BIconChevronRight } from 'bootstrap-vue';
 import { mapActions, mapGetters } from 'vuex';
-import RelativeTime from '@yaireo/relative-Time';
+import RelativeTime from '@yaireo/relative-time';
 
 export default {
   components: {

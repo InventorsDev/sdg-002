@@ -105,7 +105,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import RelativeTime from '@yaireo/relative-Time';
+import RelativeTime from '@yaireo/relative-time';
 export default {
   transition: 'fade',
   asyncData({ store }) {
