@@ -59,7 +59,7 @@ export default {
 
   async getReminders({ commit }) {
     let response = await this.$axios.$get('/reminders');
-    commit('SET_REMINDERS', response);
+    commit('SET_REMINDERS', response.data);
     return response;
   },
 };
