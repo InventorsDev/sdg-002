@@ -37,7 +37,7 @@
                 :key="index"
               >
                 <reminder-card
-                  :noOfTablet="reminder.noOfTablet"
+                  :noOfTablet="reminder.data.medication_id"
                   :drugName="reminder.data.drug_name"
                   :progress="reminder.progress"
                   :nextReminder="toRelativeTime(reminder.data.to_be_taken_at)"
@@ -155,6 +155,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { BIconChevronRight } from 'bootstrap-vue';
+import RelativeTime from '@yaireo/relative-Time';
 export default {
   components: {
     BIconChevronRight,
@@ -202,6 +203,7 @@ export default {
       this.isMounted = true;
       this.getReminders()
         .then((res) => {
+          this.$store.commit('user/UPDATE_PROGRESS');
           this.remindersLoaded = true;
         })
         .catch((err) => {
