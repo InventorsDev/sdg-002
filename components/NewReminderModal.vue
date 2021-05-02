@@ -136,6 +136,7 @@ export default {
       this.$nuxt.$loading.start();
       await this.newReminderAction(this.reminderDetails)
         .then((res) => {
+          this.$store.dispatch('user/getReminders');
           this.$nuxt.$loading.finish();
           this.$bvToast.toast('New reminder created successfully', {
             title: 'Operation Successful',

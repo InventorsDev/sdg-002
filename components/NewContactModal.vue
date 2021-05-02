@@ -90,6 +90,7 @@ export default {
       self
         .newContactAction(this.newContactDetails)
         .then((res) => {
+          self.$store.dispatch('user/getContacts');
           self.$bvToast.toast(
             `${self.newContactDetails.name} was added to your favourite contacts successfully 🎉`,
             {
