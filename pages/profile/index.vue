@@ -9,14 +9,18 @@
           width="45"
         />
         <span class="h4 text-green-400 font-weight-bolder d-inline-block ml-3">
-          Demi
+          {{ userDetails.name.split(' ')[0] }}
           <b-link to="/profile/edit" class="d-inline-block ml-2"
             ><IconsEdit
           /></b-link>
         </span>
       </div>
       <section class="mt-10vh px-2">
-        <material-input-2 :readonly="true" type="text" :placeholder="user.name">
+        <material-input-2
+          :readonly="true"
+          type="text"
+          :placeholder="userDetails.name"
+        >
           <span class="fw-600">Full name</span>
         </material-input-2>
         <!-- .. -->
@@ -24,25 +28,25 @@
           class="mt-5"
           :readonly="true"
           type="text"
-          :placeholder="user.username"
+          :placeholder="userDetails.username || 'Not set'"
         >
           <span class="fw-600">Username</span>
         </material-input-2>
         <!-- .. -->
-        <material-input-2
+        <!-- <material-input-2
           class="mt-5"
           :readonly="true"
           type="text"
-          :placeholder="user.nok"
+          :placeholder="userDetails.nok"
         >
           <span class="fw-600">Next of kin</span>
-        </material-input-2>
+        </material-input-2> -->
         <!-- .. -->
         <material-input-2
           class="mt-5"
           :readonly="true"
           type="text"
-          :placeholder="user.address"
+          :placeholder="userDetails.address || 'Not set'"
         >
           <span class="fw-600">Address</span>
         </material-input-2>
@@ -51,7 +55,7 @@
           class="mt-5"
           :readonly="true"
           type="text"
-          :placeholder="user.doctor"
+          :placeholder="userDetails.doctor || 'Not set'"
         >
           <span class="fw-600">Doctor</span>
         </material-input-2>
@@ -60,7 +64,7 @@
           class="mt-5"
           :readonly="true"
           type="text"
-          :placeholder="user.blood_group"
+          :placeholder="userDetails.blood_group || 'Not set'"
         >
           <span class="fw-600">Blood(type / group)</span>
         </material-input-2>
@@ -69,7 +73,7 @@
           class="mt-5"
           :readonly="true"
           type="text"
-          :placeholder="user.email"
+          :placeholder="userDetails.email || 'Not set'"
         >
           <span class="fw-600">Email</span>
         </material-input-2>
@@ -81,20 +85,12 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  asyncData() {
-    return {
-      user: {
-        name: 'Sam-alade Oluwademilade joshua',
-        email: 'sladesdesk5@gmail.com',
-        username: 'Demi',
-        dob: '30 / 04 / 2021',
-        nok: 'Asaolu Elijah',
-        address: 'OAUSTECH, Okitipupa',
-        doctor: 'Marvell jay',
-        blood_group: 'AA / O -ve',
-      },
-    }
+  computed: {
+    ...mapGetters({
+      userDetails: 'user/userDetails',
+    }),
   },
-}
+};
 </script>
