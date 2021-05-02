@@ -17,10 +17,11 @@
         <h5 class="section-title text-green-400 d-inline-block fw-600">
           Upcoming <br />
           Medication
-          <span class="h5"
-            ><BIconChevronRight
+          <span class="h5">
+            <BIconChevronRight
               @click="scrollTo('right', '.reminders-wrapper', 100)"
-          /></span>
+            />
+          </span>
         </h5>
         <span
           class="d-inline-block float-right mt-3"
@@ -205,6 +206,10 @@ export default {
         .then((res) => {
           this.$store.commit('user/UPDATE_PROGRESS');
           this.remindersLoaded = true;
+          // after reminders is loaded, send FCM token to BE
+          setTimeout(() => {
+            this.$store.dispatch('app/sendToken');
+          }, 1000);
         })
         .catch((err) => {
           this.remindersLoadedErr = false;
