@@ -7,7 +7,7 @@
       </h2>
       <p class="text-muted fw-500">2 overdue notifications</p>
 
-      <template v-if="reminders.length > 0">
+      <template v-if="reminders.past.length > 0">
         <!-- ... -->
         <section class="mt-5 mb-5">
           <h5 class="text-green-400 d-inline-block fw-600">Upcoming</h5>
@@ -93,7 +93,9 @@
             width="150"
             alt=""
           />
-          <p class="px-3 text-muted mt-4">Opps! you've not created any reminder.</p>
+          <p class="px-3 text-muted mt-4">
+            Opps! you've not created any reminder.
+          </p>
         </div>
       </template>
       <div class="mt-20vh">&nbsp;</div>
