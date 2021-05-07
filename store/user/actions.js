@@ -43,6 +43,10 @@ export default {
     }
   },
 
+  async updateProfile(_, userDetails) {
+    return await this.$axios.$post('/user/profile', userDetails);
+  },
+
   async newContact(_, contactDetails) {
     return await this.$axios.$post('/contacts', contactDetails);
   },
