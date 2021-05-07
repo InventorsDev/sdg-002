@@ -60,6 +60,10 @@ export default {
   async getReminders({ commit }) {
     let response = await this.$axios.$get('/medications');
     commit('SET_REMINDERS', response.data);
+    commit('UPDATE_PROGRESS');
     return response;
+  },
+  async sendEmergencyMail() {
+    return await this.$axios.$post('/user/alert/contacts');
   },
 };
