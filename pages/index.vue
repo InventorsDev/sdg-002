@@ -24,25 +24,34 @@
           </span>
         </h5>
         <span
+          v-if="remindersLoaded && reminders.length > 1"
           class="d-inline-block float-right mt-3"
           @click="$bvModal.show('reminder-modal')"
         >
           <IconsGreenBell />
         </span>
-        <template v-if="remindersLoaded && reminders.upcoming.length > 0">
+        <template v-if="remindersLoaded && reminders.length > 0">
           <div class="reminders-wrapper">
             <b-row class="mt-4 flex-nowrap overflow-auto">
               <b-col
                 cols="auto px-2"
-                v-for="(reminder, index) in reminders.upcoming"
+                v-for="(reminder, index) in reminders"
                 :key="index"
               >
                 <reminder-card
-                  :noOfTablet="reminder.data.medication_id"
-                  :drugName="reminder.data.drug_name"
+                  :noOfTablet="Number(reminder.dosage.split(' ')[0])"
+                  :drugName="reminder.drug_name"
                   :progress="reminder.progress"
-                  :nextReminder="toRelativeTime(reminder.data.to_be_taken_at)"
+                  :nextReminder="toRelativeTime(reminder.dosage_started_at)"
                 />
+              </b-col>
+              <b-col
+                cols="auto border add-new-card"
+                v-if="remindersLoaded && reminders.length < 2"
+                @click="$bvModal.show('reminder-modal')"
+              >
+                <p class="text-center h3"><BIconClipboardPlus /></p>
+                <span class="d-inline-block mt-1">Add new</span>
               </b-col>
             </b-row>
           </div>
@@ -155,11 +164,12 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import { BIconChevronRight } from 'bootstrap-vue';
+import { BIconChevronRight, BIconClipboardPlus } from 'bootstrap-vue';
 import RelativeTime from '@yaireo/relative-time';
 export default {
   components: {
     BIconChevronRight,
+    BIconClipboardPlus,
   },
   transition: 'fade',
   data() {
@@ -224,5 +234,17 @@ export default {
 }
 .card-img {
   height: 150px;
+}
+.add-new-card {
+  margin-left: 5vw;
+  padding: 50px 30px;
+  background: linear-gradient(
+    135deg,
+    rgba(250, 250, 250, 0.8) 0%,
+    rgba(250, 250, 250, 0.2) 100%
+  );
+  mix-blend-mode: normal;
+  box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.02);
+  border-radius: 30px;
 }
 </style>
