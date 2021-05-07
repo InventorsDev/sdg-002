@@ -46,8 +46,8 @@
                 />
               </b-col>
               <b-col
-                cols="auto border add-new-card"
                 v-if="remindersLoaded && reminders.length < 2"
+                cols="auto border add-new-card"
                 @click="$bvModal.show('reminder-modal')"
               >
                 <p class="text-center h3"><BIconClipboardPlus /></p>
@@ -214,7 +214,6 @@ export default {
       this.isMounted = true;
       this.getReminders()
         .then((res) => {
-          this.$store.commit('user/UPDATE_PROGRESS');
           this.remindersLoaded = true;
           // after reminders is loaded, send FCM token to BE
           setTimeout(() => {
