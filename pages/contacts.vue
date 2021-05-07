@@ -57,9 +57,18 @@
             width="220"
             alt="Empty Illustration"
           />
-          <p class="text-muted px-2 mt-4">
+          <p class="text-muted px-3 mt-4">
             Looks like you've not added any contact - yet.
           </p>
+          <div class="mt-4 px-4">
+            <b-button
+              size="lg"
+              class="bg-green-custom border-0 text-white rounded-pill w-50"
+              @click="$bvModal.show('contact-modal')"
+            >
+              Add New
+            </b-button>
+          </div>
         </div>
       </template>
       <div class="mt-20vh">&nbsp;</div>
