@@ -2,7 +2,7 @@
   <div class="alert-card border p-3 pl-3">
     <radial-progress-bar
       :diameter="70"
-      :completed-steps="progress"
+      :completed-steps="progress ? progress : 10"
       :total-steps="100"
       :strokeWidth="4"
       innerStrokeColor="transparent"
@@ -10,7 +10,7 @@
       startColor="var(--green-200)"
       stopColor="var(--green-200)"
     >
-      <h5>{{ progress + '%' }}</h5>
+      <h5>{{ progress ? progress : 10 + '%' }}</h5>
     </radial-progress-bar>
     <div class="mt-3">
       <span class="d-block text-muted">{{ noOfTablet + ' Tablets' }}</span>
@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import RadialProgressBar from 'vue-radial-progress'
+import RadialProgressBar from 'vue-radial-progress';
 
 export default {
   components: {
@@ -44,11 +44,11 @@ export default {
       required: true,
     },
   },
-}
+};
 </script>
 <style scoped>
 .alert-card {
-  padding-right: 60px !important;
+  padding-right: 30px !important;
   background: linear-gradient(
     135deg,
     rgba(250, 250, 250, 0.8) 0%,
