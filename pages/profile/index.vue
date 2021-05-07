@@ -6,7 +6,6 @@
           :src="userDPUrl"
           class="border rounded-circle img-auto"
           alt="avatar"
-          width="45"
         />
         <span class="h4 text-green-400 font-weight-bolder d-inline-block ml-3">
           {{ userDetails.name.split(' ')[0] }}
