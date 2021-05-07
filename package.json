@@ -19,6 +19,7 @@
     "core-js": "^3.9.1",
     "gravatar": "^1.8.1",
     "nuxt": "^2.15.3",
+    "shake.js": "^1.2.2",
     "vue-radial-progress": "^0.3.2"
   },
   "devDependencies": {
