@@ -7,7 +7,7 @@
       </h2>
       <p class="text-muted fw-500">2 overdue notifications</p>
 
-      <template v-if="reminders.past.length > 0">
+      <template v-if="reminders.length > 0">
         <!-- ... -->
         <section class="mt-5 mb-5">
           <h5 class="text-green-400 d-inline-block fw-600">Upcoming</h5>
@@ -15,23 +15,25 @@
           <div class="px-3">
             <b-row
               class="mt-4 p-3 bg-light rounded"
-              v-for="(reminder, index) in reminders.upcoming"
+              v-for="(reminder, index) in upcomingReminder"
               :key="index"
             >
               <b-col cols="auto pr-0">
                 <b-form-checkbox
                   size="lg"
-                  :checked="reminder.data.completed"
+                  disabled
+                  :checked="reminder.status == 'pending' ? false : true"
                   @change="markAsComplete(reminder.id)"
                 ></b-form-checkbox>
               </b-col>
               <b-col cols="auto">
-                <h6 class="text-green-400 mb-0">
-                  {{ reminder.data.drug_name }} -
-                  {{ reminder.data.medication_id + ' Tablets' }}
+                <h6 class="text-capitalize text-green-400 mb-0">
+                  {{ reminder.drug_name }} -
+                  {{ reminder.dosage }}
                 </h6>
                 <small class="d-inline-block mt-2 text-muted">
-                  To be taken {{ toRelativeTime(reminder.data.to_be_taken_at) }}
+                  <!-- ⚠ modify when BE is updated -->
+                  To be taken {{ toRelativeTime(reminder.dosage_started_at) }}
                 </small>
               </b-col>
             </b-row>
@@ -41,27 +43,30 @@
 
         <section>
           <h5 class="mt-5 text-green-400 fw-600">Past</h5>
-          <div class="mt-4 px-3">
+          <div class="mt-4 px-3" v-if="completedReminder.length > 0">
             <!-- .. -->
             <b-row
               class="mt-4"
-              v-for="(reminder, index) in reminders.past"
+              v-for="(reminder, index) in completedReminder"
               :key="index"
             >
               <b-col cols="auto pr-0">
                 <b-form-checkbox size="lg" :checked="true"></b-form-checkbox>
               </b-col>
               <b-col cols="auto">
-                <h6 class="text-green-400 mb-0">
-                  {{ reminder.data.medication_id + ' Tablets' }} of
-                  {{ reminder.data.drug_name }}
+                <h6 class="text-capitalize text-green-400 mb-0">
+                  {{ reminder.dosage }} of
+                  {{ reminder.drug_name }}
                 </h6>
                 <small class="text-muted">
-                  Completed {{ toRelativeTime(reminder.updated_at) }}
+                  <!-- ⚠ modify when BE is updated -->
+                  Completed {{ toRelativeTime(reminder.dosage_started_at) }}
                 </small>
               </b-col>
             </b-row>
           </div>
+          <div class="mt-4 px-3" v-else>Nothing here yet</div>
+          <hr />
         </section>
         <!-- ... -->
         <section class="mt-5 mb-5">
@@ -96,6 +101,15 @@
           <p class="px-3 text-muted mt-4">
             Opps! you've not created any reminder.
           </p>
+          <div class="px-4">
+            <b-button
+              size="lg"
+              class="mt-5 bg-green-custom border-0 text-white rounded-pill w-100"
+              to="/"
+            >
+              Go Home
+            </b-button>
+          </div>
         </div>
       </template>
       <div class="mt-20vh">&nbsp;</div>
@@ -112,6 +126,7 @@ export default {
     return store
       .dispatch('user/getReminders')
       .then((_) => {
+        console.log(_);
         return { fetchError: false };
       })
       .catch((_) => {
@@ -122,6 +137,16 @@ export default {
     ...mapGetters({
       reminders: 'user/reminders',
     }),
+    completedReminder() {
+      return this.reminders.filter((arr) => {
+        return arr.status !== 'pending';
+      });
+    },
+    upcomingReminder() {
+      return this.reminders.filter((arr) => {
+        return arr.status == 'pending';
+      });
+    },
   },
   methods: {
     toRelativeTime(timestamp) {
