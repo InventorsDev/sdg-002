@@ -43,6 +43,10 @@ export default {
     }
   },
 
+  async updateProfile(_, userDetails) {
+    return await this.$axios.$post('/user/profile', userDetails);
+  },
+
   async newContact(_, contactDetails) {
     return await this.$axios.$post('/contacts', contactDetails);
   },
@@ -58,8 +62,12 @@ export default {
   },
 
   async getReminders({ commit }) {
-    let response = await this.$axios.$get('/reminders');
+    let response = await this.$axios.$get('/medications');
     commit('SET_REMINDERS', response.data);
+    commit('UPDATE_PROGRESS');
     return response;
+  },
+  async sendEmergencyMail() {
+    return await this.$axios.$post('/user/alert/contacts');
   },
 };

@@ -85,12 +85,16 @@ export default {
     ...mapActions({
       newContactAction: 'user/newContact',
     }),
-    submitForm() {
+    submitForm(e) {
       const self = this;
       self
         .newContactAction(this.newContactDetails)
         .then((res) => {
           self.$store.dispatch('user/getContacts');
+
+          this.$bvModal.hide('contact-modal');
+          e.target.reset();
+
           self.$bvToast.toast(
             `${self.newContactDetails.name} was added to your favourite contacts successfully 🎉`,
             {

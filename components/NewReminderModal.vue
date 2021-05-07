@@ -9,7 +9,7 @@
       <p class="text-right px-3" @click="$bvModal.hide('reminder-modal')">
         <IconsClose />
       </p>
-      <h5 class="mt-4">Select Category</h5>
+      <h5 class="mt-4">New Reminder</h5>
       <!-- ... -->
       <b-form class="mt-3" @submit.prevent="createReminder">
         <!-- ... -->
@@ -138,6 +138,10 @@ export default {
         .then((res) => {
           this.$store.dispatch('user/getReminders');
           this.$nuxt.$loading.finish();
+
+          this.reminderDetails.drug_name = null;
+          this.$bvModal.hide('reminder-modal');
+
           this.$bvToast.toast('New reminder created successfully', {
             title: 'Operation Successful',
             toaster: 'b-toaster-bottom-center',

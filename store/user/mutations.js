@@ -16,7 +16,7 @@ export default {
   },
 
   UPDATE_PROGRESS(state) {
-    state.reminders.upcoming.forEach((rem) => {
+    state.reminders.forEach((rem) => {
       // let startDate = new Date(rem.created_at),
       //   end = new Date(2021, 6, 1),
       //   today = new Date();
